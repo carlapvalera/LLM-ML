@@ -105,6 +105,7 @@ class LTM_Node:
         '''
         if self.children==None:
             return
+        self.children={x.vector:x for _, x in self.children.items()}
         self.vector=self.calculate_vector()
         for p in self.parents:
             p.update()
@@ -121,7 +122,7 @@ class LTM_Node:
         '''
             Calculate the vector of this node based on his children
         '''
-        pass 
+        pass
 
 class LTM:
     '''
@@ -160,7 +161,7 @@ class LTM:
                 node.insert(new_node)
             else:    
                 #NOTE: Situation 2: The most relevant node was another memory.
-                node.mix(vector,new_node)
+                node.mix_memories(vector,new_node)
         
         self.where_to_insert=[]
 
