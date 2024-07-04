@@ -68,7 +68,7 @@ class LTM_Node:
             MemoryList: a list of the memories that this node summarizes (children nodes)
             parents: a list of the nodes that are parents of this node
         '''
-        self.children: dict[str,'LTM_Node']|None = {x.get_vector():x for x in arg}
+        self.children: dict[str,'LTM_Node']|None = {x.vector:x for x in arg}
         self.vector:str = self.calculate_vector()
         self.is_leaf:bool=False
         self.parents=[]
