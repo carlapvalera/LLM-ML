@@ -226,9 +226,9 @@ class LTM:
         #Joining the threads
         for i in range(len(child_threads)):
             child_threads[i].join()
-            _,_,similarity = child_node[i][2]
+            _,_,similarity = child_node[i]
             if len(child_relevant_nodes[i])!=0:
-                solution.append(child_relevant_nodes[i])
+                solution.append(child_relevant_nodes[i][0])
             elif similarity > _lambda:
                 solution.append(child_node[i])
         
