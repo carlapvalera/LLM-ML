@@ -16,6 +16,10 @@ def get_similarity(query:str,vector_space:list, k:int) -> list[tuple[str,float]]
         A list of tuples (text, score) where text is one of the k most 
         relevant texts and score is its degree of similarity to the query text.
     """
+
+    if k==0 or len(vector_space)==0:
+        return []
+    
     # Create TF-IDF vectorizer
     vectorizer = TfidfVectorizer()
     
@@ -28,6 +32,8 @@ def get_similarity(query:str,vector_space:list, k:int) -> list[tuple[str,float]]
     # Ordenar los textos por similitud de coseno en orden descendente
     sorted_indices = similarities.argsort()[0][::-1]
     
+    k=min(k,len(sorted_indices))
+
     # Devolver los k textos más relevantes
     return [(vector_space[i], similarities[0][i]) for i in sorted_indices[:k]]
 
@@ -43,24 +49,26 @@ class LTM_Node:
                 His vector is just a summary of his children vectors
     '''
 
-    def __init__(self, conversation:str):
-        '''
-            This represent a new memory in LTM
-            conversation: the conversation that this node represents
-            parents: a list of the nodes that are parents of this node
-        '''
-        self.vector:str = conversation
-        self.children: dict[str,'LTM_Node']|None = None
-        self.is_leaf:bool = True
-        self.parents:list['LTM_Node'] = []
+    def __init__(self, arg:str|list['LTM_Node'],is_leaf=True):
 
-    def __init__(self, MemoryList:list['LTM_Node']):
+        if is_leaf:
+            '''
+                This represent a new memory in LTM
+                conversation: the conversation that this node represents
+                parents: a list of the nodes that are parents of this node
+            '''
+            self.vector:str = arg
+            self.children: dict[str,'LTM_Node']|None = None
+            self.is_leaf:bool = True
+            self.parents:list['LTM_Node'] = []
+            return
+
         '''
             This represent a summary of memories
             MemoryList: a list of the memories that this node summarizes (children nodes)
             parents: a list of the nodes that are parents of this node
         '''
-        self.children: dict[str,'LTM_Node']|None = {x.get_vector():x for x in MemoryList}
+        self.children: dict[str,'LTM_Node']|None = {x.get_vector():x for x in arg}
         self.vector:str = self.calculate_vector()
         self.is_leaf:bool=False
         self.parents=[]
@@ -84,7 +92,7 @@ class LTM_Node:
             - new_memory_node: the new memory node
         '''
         old_child = self.children[vector]
-        new_summary=LTM_Node([old_child,new_memory_node])
+        new_summary=LTM_Node([old_child,new_memory_node], False)
         new_memory_node.parents.append(new_summary)
         old_child.parents.remove(self)
         old_child.parents.append(new_summary)
@@ -128,7 +136,7 @@ class LTM:
     '''
 
     def __init__(self, _lambda:float=0.5, k_child:int=1):
-        self.root=LTM_Node([])
+        self.root=LTM_Node([], False)
         self._lambda=_lambda
         self.k_child=k_child
         self.where_to_insert=[] 
@@ -146,7 +154,7 @@ class LTM:
         '''
         new_node = LTM_Node(new_memory)
 
-        for node, vector, _ in self.where_to_insert:
+        for node, vector in self.where_to_insert:
             if node.vector==vector and not vector in node.children.keys():
                 #NOTE: Situation 1: The most relevant node was a summary.
                 node.insert(new_node)
