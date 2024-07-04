@@ -1,4 +1,3 @@
-from typing import TYPE_CHECKING
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import threading
@@ -16,10 +15,8 @@ def get_similarity(query:str,vector_space:list, k:int) -> list[tuple[str,float]]
         A list of tuples (text, score) where text is one of the k most 
         relevant texts and score is its degree of similarity to the query text.
     """
-
-    if k==0 or len(vector_space)==0:
+    if vector_space==[]:
         return []
-    
     # Create TF-IDF vectorizer
     vectorizer = TfidfVectorizer()
     
@@ -32,8 +29,6 @@ def get_similarity(query:str,vector_space:list, k:int) -> list[tuple[str,float]]
     # Ordenar los textos por similitud de coseno en orden descendente
     sorted_indices = similarities.argsort()[0][::-1]
     
-    k=min(k,len(sorted_indices))
-
     # Devolver los k textos más relevantes
     return [(vector_space[i], similarities[0][i]) for i in sorted_indices[:k]]
 
