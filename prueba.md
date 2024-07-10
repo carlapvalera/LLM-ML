@@ -42,17 +42,17 @@ Algunas de las principales problemáticas que enfrentan los LLM actuales incluye
 
 El modelo propuesto consiste en combinar las dos técnicas principales utilizadas en la recuperación de memoria para LLM: bases de datos basadas en grafos y vectores. El modelo está diseñado para procesar un prompt hecho por el usuario(antes de darle la llamada al modelo de lenguaje) para recuperar un contexto relevante de la memoria a corto y largo plazo, y luego almacenar la conversación (el par de entrada-salida) en el sistema.
 
-2.2 Componentes de la arquitectura
+2.1. Componentes de la arquitectura
 Como se mencionó anteriormente, hay dos estructuras principales en nuestro sistema, la memoria a corto plazo (STM) y la memoria a largo plazo (LTM). Para la entrada del usuario, se utiliza un extractor de contexto para buscar información relevante de la memoria a corto y y de las conversaciones mas acordes con el contexto de la memoria a largo plazo.
 
-2.3. STM
+2.2. STM
 La memoria a corto plazo (STM) en el modelo propuesto se encarga de almacenar la información relevante de las interacciones recientes con el usuario. Esta componente utiliza estructuras de datos eficientes para permitir un acceso y recuperación rápida de la información.
 Específicamente, cuando se produce una nueva interacción con el usuario, los datos relevantes se almacenan en la STM, reemplazando o desplazando los registros más antiguos. Para extraer y estructurar esta información relevante, se emplean técnicas de procesamiento de lenguaje natural.
 De esta manera, la STM permite que el modelo tenga acceso a los detalles recientes de la conversación, lo cual es crucial para mantener la coherencia y adaptabilidad de las respuestas generadas. La información almacenada en la STM se combina posteriormente con los recuerdos recuperados de la memoria a largo plazo (LTM) para producir una respuesta final adaptada al usuario.
 En resumen, la STM juega un papel fundamental al proporcionar al modelo la capacidad de recordar y utilizar eficazmente la información contextual más reciente, lo cual es esencial para lograr una interacción fluida y personalizada con el usuario.
 
-2.4. LTM
-2.4.1. Estructura
+2.3. LTM
+2.3.1. Estructura
 En este documento presentamos un enfoque novedoso para LTM basado en un algoritmo de aprendizaje en línea no supervisado. Esta estructura es una base de datos basada en grafos, donde hay dos tipos de nodos: los recuerdos y los resumidores.
 -	Los recuerdos: Un nodo de memoria representa una conversación pasada con el usuario (el par de entrada-salida).
 -	Los resumidores: Estos nodos representan un resumen de sus nodos adyacentes.
@@ -60,7 +60,7 @@ En este documento presentamos un enfoque novedoso para LTM basado en un algoritm
 Estos resumidores representan grupos de las conversaciones pasadas, y se crean dinámicamente cuando se crea un nuevo recuerdo. Todos los nodos tienen un atributo $vector$ asociado al texto que contiene el nodo (una conversación pasada o un resumen).
 En la implementación, el gráfico se implementa como un Grafo Acíclico Dirigido (DAG), donde los resumidores representan grupos de etiquetas múltiples de las conversaciones pasadas, y se crean dinámicamente cuando se crea un nuevo recuerdo.
 
-2.5. Sistema de Recuperación de Información (IRS)
+2.4. Sistema de Recuperación de Información (IRS)
 La estructura contiene un sistema de recuperación de información, que permite dar los nodos más relevantes dados una entrada.
 Sea $Q$ el espacio de todas las consultas posibles, $V$ los nodos del gráfico LTM, $r:Q \times V \rightarrow [0,1]$ un nivel de relevancia de un nodo para una consulta. La función de recuperación $f$ para la consulta $q$ en el nodo $v$ es:
 
@@ -73,7 +73,7 @@ Este algoritmo contiene tres hiperparámetros:
 
 En la implementación, $v_S$ es siempre el nodo raíz del DAG, y $r$ es la similitud del coseno entre la consulta y el vector del nodo.
 
-2.6. Resumidor
+2.5. Resumidor
 Como se mencionó anteriormente, el gráfico se crea dinámicamente a medida que el sistema interactúa con el usuario. Una nueva conversación representa un nuevo recuerdo y, por lo tanto, un nuevo nodo. La idea principal para la inserción es bastante simple, una nueva conversación debe estar junto a los nodos más relevantes recuperados por LTM. Por lo tanto, hay dos posibles escenarios:
 -	El nodo más relevante es un resumen: En este caso, el nuevo recuerdo será adyacente a este nodo, y los vectores de él y sus consecutivos se actualizarán.
 -	El nodo más relevante es un recuerdo: Sea $v$ el nodo más relevante para el nuevo nodo de memoria $u$. Al determinar quién fue el nodo más relevante, necesariamente debe haber habido un nodo de resumen a través del cual llegar a $u$. Llamemos a dicho nodo $w$. En este caso, se creará un nuevo nodo de resumen $s$, de modo que será adyacente a $u$ y $v$, y luego $w$ será adyacente a él.
@@ -85,7 +85,7 @@ La función principal es `summarize_text`, que toma un texto como entrada y devu
 Finalmente, el resumen generado se decodifica y se devuelve como una cadena. Se proporciona un ejemplo de uso de la función con un texto de ejemplo.
 En resumen, este código permite generar resúmenes de texto de manera automática utilizando el modelo T5, lo que puede ser útil en tareas de procesamiento de lenguaje natural donde se requiere condensar información de manera concisa.
 
-2.7. extractor de contexto
+2.6. extractor de contexto
 La idea principal de este código es realizar un fine-tuning del modelo BERT pre-entrenado en el dataset SQuAD. El fine-tuning es una técnica muy utilizada en aprendizaje de máquina y procesamiento de lenguaje natural (NLP) cuando se tiene un modelo pre-entrenado en un conjunto de datos general y se quiere adaptar ese modelo a una tarea o dominio específico.
 En este caso, el modelo BERT ha sido pre-entrenado en un conjunto de datos genérico, pero para la tarea de pregunta-respuesta, es necesario ajustar el modelo a las características específicas de este tipo de tareas. El fine-tuning permite aprovechar los conocimientos generales aprendidos por BERT y adaptarlos a la tarea de pregunta-respuesta utilizando el dataset SQuAD.
 
@@ -125,6 +125,7 @@ Para mitigar estos riesgos, es crucial que el desarrollo de este tipo de modelos
 -	Establecer claros lineamientos y políticas de uso que impidan la utilización del modelo con fines manipulativos o engañosos.
 -	Involucrar a expertos en ética y derechos humanos en el proceso de diseño y desarrollo del modelo.
 Solo a través de un enfoque responsable y ético en el desarrollo de este tipo de tecnologías será posible aprovechar sus beneficios sin comprometer los derechos y el bienestar de los usuarios.
+
 4.2. Trabajos relacionados
 -   MEMORY NETWORKS (arXiv:1410.3916v11 [cs.AI] 29 Nov 2015) Presentan la arquitectura general de los "memory networks" y sus componentes clave (I, G, O, R). Exploran variantes como el uso de hashing de memoria para mejorar la eficiencia. Realizan experimentos en tareas de preguntas y respuestas a gran escala y en un mundo simulado. Los autores concluyen que los "memory networks" son una clase de modelos poderosos que deben explorarse más a fondo en tareas de comprensión de texto y otras áreas. Identifican varias direcciones futuras, como probar en tareas más complejas, explorar configuraciones débilmente supervisadas y desarrollar arquitecturas más sofisticadas.
 -	MemoryBank: Enhancing Large Language Models with Long-Term Memory (arXiv:2305.10250v3 [cs.CL] 21 May 2023) utiliza un modelo de base de datos vectorial que imita comportamientos antropomórficos y preserva selectivamente la memoria, incorporando un mecanismo de actualización de memoria, inspirado en la teoría de la curva de olvido de Ebbinghaus. Este mecanismo permite que la IA olvide y refuerce la memoria en función del tiempo transcurrido y la importancia relativa de la memoria, ofreciendo así un mecanismo de memoria más similar al humano y una experiencia de usuario enriquecida. Almacena conversaciones pasadas, eventos resumidos y retratos de usuarios.
