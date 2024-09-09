@@ -1,0 +1,17 @@
+# Archivos compilados
+*.pyc
+__pycache__/
+
+# Entornos virtuales
+venv/
+env/
+
+# Archivos de configuración
+*.env
+*.ini
+
+# IDE
+.vscode/
+.idea/
+.venv/
+saved_model/
