@@ -7,7 +7,7 @@ import re
 load_dotenv()
 
 # Obtener el valor de la variable de entorno
-api_key = os.getenv('FIREWORKS_APY')
+api_key = os.getenv('FIREWORKS_API')
 class LLM():
     def __init__(self, api_key: str = api_key, model: str = "accounts/fireworks/models/llama-v3p1-8b-instruct") -> None:
         self.__SEND_GLOBAL_STATEMENT = True
