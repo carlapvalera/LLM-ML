@@ -16,7 +16,7 @@ def get_context(query):
     return ""
 
 
-def save_context(query):
+def save_context(answer):
     pass
 
 
