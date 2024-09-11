@@ -15,3 +15,5 @@ env/
 .idea/
 .venv/
 saved_model/
+
+# Api Key
