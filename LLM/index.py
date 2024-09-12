@@ -41,6 +41,7 @@ st.session_state.setdefault(
     # {'type': 'table', 'data': f'{table_markdown}'}]
 )
 
+# Iniciar conversacion
 st.title("Chat placeholder")
 message("Hola en que puedo ayudarte?")
 
