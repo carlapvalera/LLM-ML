@@ -1,9 +1,24 @@
 from fireworks.client import Fireworks
+import os
+#from dotenv import load_dotenv
 import re
 
 
+API_KEY = "fw_3ZXb6WWaLuUNnJZnvXWTwEY2"
+SEND_GLOBAL_STATEMENT = True
+
+
+
+
+# Cargar las variables de entorno desde el archivo .env
+#load_dotenv()
+
+# Obtener el valor de la variable de entorno
+#api_key = os.getenv('FIREWORKS_API')
+api_key = API_KEY
+
 class LLM():
-    def __init__(self, api_key: str = "fw_3ZXb6WWaLuUNnJZnvXWTwEY2", model: str = "accounts/fireworks/models/llama-v3p1-8b-instruct") -> None:
+    def __init__(self, api_key: str = api_key, model: str = "accounts/fireworks/models/llama-v3p1-8b-instruct") -> None:
         self.__SEND_GLOBAL_STATEMENT = True
         self.__api_key = api_key
         self.__model = model
