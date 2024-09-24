@@ -1,0 +1,80 @@
+import sqlite3
+import numpy as np
+import torch
+from transformers import AutoTokenizer, DPRContextEncoder
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Configuración del modelo y tokenizador
+save_directory = "./saved_model"
+tokenizer = AutoTokenizer.from_pretrained(save_directory)
+model = DPRContextEncoder.from_pretrained(save_directory)
+
+# Función para generar embeddings
+def generate_embedding(question):
+    inputs = tokenizer(question, return_tensors="pt")
+    with torch.no_grad():
+        embeddings = model(**inputs).pooler_output
+    return embeddings
+
+# Configuración de la base de datos SQLite
+def setup_database():
+    conn = sqlite3.connect('embeddings.db')
+    c = conn.cursor()
+    c.execute('''
+    CREATE TABLE IF NOT EXISTS embeddings (
+        id INTEGER PRIMARY KEY,
+        question TEXT,
+        embedding BLOB
+    )
+    ''')
+    conn.commit()
+    return conn
+
+# Función para recuperar todos los embeddings de la base de datos
+def retrieve_all_embeddings(conn):
+    c = conn.cursor()
+    c.execute('SELECT question, embedding FROM embeddings')
+    rows = c.fetchall()
+    
+    embeddings_list = []
+    questions_list = []
+    
+    for row in rows:
+        question, embedding_blob = row
+        embedding_array = np.frombuffer(embedding_blob, dtype=np.float32)  # Convertir de bytes a array
+        questions_list.append(question)
+        embeddings_list.append(embedding_array)
+
+    return questions_list, np.array(embeddings_list)
+
+# Función para encontrar el embedding más relevante
+def find_most_relevant_embedding(query):
+    # Generar el embedding para la consulta
+    query_embedding = generate_embedding(query).numpy()
+
+    # Configurar la base de datos y recuperar todos los embeddings
+    conn = setup_database()
+    questions, stored_embeddings = retrieve_all_embeddings(conn)
+    
+    # Calcular similitudes coseno entre la consulta y los embeddings almacenados
+    similarities = cosine_similarity(query_embedding.reshape(1, -1), stored_embeddings).flatten()
+
+    # Encontrar el índice del embedding más similar
+    most_relevant_index = np.argmax(similarities)
+
+    # Obtener la pregunta correspondiente al embedding más relevante
+    most_relevant_question = questions[most_relevant_index]
+    
+    print("Consulta:", query)
+    print("Pregunta más relevante:", most_relevant_question)
+    
+    # Cerrar la conexión a la base de datos
+    conn.close()
+
+# Main execution flow
+if __name__ == "__main__":
+    # Ejemplo de uso con una consulta
+    query = "¿Cuál es la capital de Francia?"
+    
+    # Llamar a la función para encontrar el embedding más relevante
+    find_most_relevant_embedding(query)
