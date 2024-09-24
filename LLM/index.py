@@ -4,14 +4,23 @@ from streamlit_chat import message
 from streamlit.components.v1 import html
 from streamlit_chat import message
 from start import LLM
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import re
 import os
+
+
+
+
+API_KEY = "fw_3ZXb6WWaLuUNnJZnvXWTwEY2"
+SEND_GLOBAL_STATEMENT = True
+
+api_key = API_KEY
+#
 # Cargar las variables de entorno desde el archivo .env
-load_dotenv()
+#load_dotenv()
 
 # Obtener el valor de la variable de entorno
-api_key = os.getenv('FIREWORKS_API')
+#api_key = os.getenv('FIREWORKS_API')
 
 # Crear instancia del LLM
 llm = LLM(api_key=api_key)

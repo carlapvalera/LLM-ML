@@ -48,24 +48,30 @@ def retrieve_embeddings(conn):
         print("Pregunta:", question)
         print("Embedding:", embedding_array)
 
-# Main execution flow
-if __name__ == "__main__":
+# Función de prueba
+def test_embeddings():
     # Configurar la base de datos
     conn = setup_database()
 
-    # Pregunta para generar el embedding
-    question = "¿Cuál es la capital de Francia?"
-    
-    # Generar el embedding
-    embeddings = generate_embedding(question)
+    # Preguntas de ejemplo
+    questions = [
+        "¿Cuál es la capital de Francia?",
+        "¿Quién fue el primer presidente de Estados Unidos?",
+        "¿Cuántos planetas hay en el sistema solar?"
+    ]
 
-    # Insertar el embedding en la base de datos
-    insert_embedding(conn, question, embeddings)
+    # Generar y almacenar embeddings
+    for question in questions:
+        embeddings = generate_embedding(question)
+        insert_embedding(conn, question, embeddings)
 
-    # Recuperar y mostrar los embeddings almacenados
+    # Recuperar y mostrar embeddings almacenados
     print("\nEmbeddings almacenados en la base de datos:")
     retrieve_embeddings(conn)
 
     # Cerrar la conexión a la base de datos
     conn.close()
-    
+
+# Main execution flow
+if __name__ == "__main__":
+    test_embeddings()
