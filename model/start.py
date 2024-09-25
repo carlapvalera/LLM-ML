@@ -39,7 +39,8 @@ class LLM():
         return""
     
     def _save_context(self,answer):
-        self.ContextManager._save_context(answer)
+        #self.ContextManager._save_context(answer)
+        pass
         
     
 
