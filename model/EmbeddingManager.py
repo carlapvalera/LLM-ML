@@ -5,7 +5,7 @@ from transformers import AutoTokenizer, DPRContextEncoder
 from sklearn.metrics.pairwise import cosine_similarity
 
 class EmbeddingManager:
-    save_directory = "./saved_model"
+    save_directory = "C:\\blabla\\LLM-ML\\saved_model"
     tokenizer = AutoTokenizer.from_pretrained(save_directory)
     model = DPRContextEncoder.from_pretrained(save_directory)
 
