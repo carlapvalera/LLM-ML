@@ -81,7 +81,7 @@ class EmbeddingManager:
         return most_relevant_indices, contexts
 
 # Ejemplo de uso
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     manager = EmbeddingManager()  # Crear una instancia de EmbeddingManager
     query = "¿Cuál es la capital de Francia?"
     
@@ -89,7 +89,7 @@ class EmbeddingManager:
     indices, contexts = manager.relevant_context(query)
     
     print("Índices relevantes:", indices)
-    print("Contextos relevantes:", contexts)"""
+    print("Contextos relevantes:", contexts)
 
 
 class ContextManager:

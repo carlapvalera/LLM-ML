@@ -1,6 +1,8 @@
 from fireworks.client import Fireworks
+import os
 #from dotenv import load_dotenv
 import re
+import sys
 
 
 from ContextManager import ContextManager  # Importar ContextManager
@@ -33,7 +35,8 @@ class LLM():
 
     # TODO: Fill get_context and save_context with the back-end like part with the RAG and BERT components
     def _get_context(self,query):
-        return self.ContextManager._get_context(query)
+        #return self.ContextManager._get_context(query)
+        return""
     
     def _save_context(self,answer):
         self.ContextManager._save_context(answer)
