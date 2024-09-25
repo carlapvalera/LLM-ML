@@ -2,6 +2,7 @@ from fireworks.client import Fireworks
 import os
 #from dotenv import load_dotenv
 import re
+from EmbeddingManager import EmbeddingManager
 
 
 API_KEY = "fw_3ZXb6WWaLuUNnJZnvXWTwEY2"
@@ -28,9 +29,18 @@ class LLM():
 
     # TODO: Fill get_context and save_context with the back-end like part with the RAG and BERT components
     def _get_context(self,query):
+
         return ""
     def _save_context(self,answer):
+        EmbeddingManager.insert_response(answer)
         pass
+    
+
+
+
+
+
+
     
     def _send(self, query, content=""):
         response = self.__client.chat.completions.create(
