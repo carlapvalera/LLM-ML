@@ -7,14 +7,19 @@ from sklearn.metrics.pairwise import cosine_similarity
 #from EmbeddingManager import EmbeddingManager
 
 
+import sqlite3
+import numpy as np
+import torch
+from transformers import AutoTokenizer, DPRContextEncoder
+from sklearn.metrics.pairwise import cosine_similarity
 
 class EmbeddingManager:
-    save_directory = "C:\\blabla\\LLM-ML\\saved_model"
-    tokenizer = AutoTokenizer.from_pretrained(save_directory)
-    model = DPRContextEncoder.from_pretrained(save_directory)
+    def __init__(self, save_directory="C:\\blabla\\LLM-ML\\saved_model"):
+        self.save_directory = save_directory
+        self.tokenizer = AutoTokenizer.from_pretrained(self.save_directory)
+        self.model = DPRContextEncoder.from_pretrained(self.save_directory)
 
-    @staticmethod
-    def setup_database():
+    def setup_database(self):
         conn = sqlite3.connect('embeddings.db')
         c = conn.cursor()
         c.execute('''
@@ -27,22 +32,19 @@ class EmbeddingManager:
         conn.commit()
         return conn
 
-    @staticmethod
-    def generate_embedding(query):
-        inputs = EmbeddingManager.tokenizer(query, return_tensors="pt")
+    def generate_embedding(self, query):
+        inputs = self.tokenizer(query, return_tensors="pt")
         with torch.no_grad():
-            embeddings = EmbeddingManager.model(**inputs).pooler_output
+            embeddings = self.model(**inputs).pooler_output
         return embeddings
 
-    @staticmethod
-    def insert_embedding(conn, embedding, context):
+    def insert_embedding(self, conn, embedding, context):
         embedding_blob = embedding.numpy().tobytes()  # Convertir a bytes
         c = conn.cursor()
         c.execute('INSERT INTO embeddings (embedding, context) VALUES (?, ?)', (embedding_blob, context))
         conn.commit()
 
-    @staticmethod
-    def retrieve_all_embeddings(conn):
+    def retrieve_all_embeddings(self, conn):
         c = conn.cursor()
         c.execute('SELECT embedding, context FROM embeddings')
         rows = c.fetchall()
@@ -59,14 +61,13 @@ class EmbeddingManager:
 
         return np.array(embeddings_list), contexts_list
 
-    @staticmethod
-    def relevant_context(query):
+    def relevant_context(self, query):
         # Generar el embedding para la consulta
-        query_embedding = EmbeddingManager.generate_embedding(query).numpy()
+        query_embedding = self.generate_embedding(query).numpy()
 
         # Configurar la base de datos y recuperar todos los embeddings
-        conn = EmbeddingManager.setup_database()
-        stored_embeddings, contexts = EmbeddingManager.retrieve_all_embeddings(conn)
+        conn = self.setup_database()
+        stored_embeddings, contexts = self.retrieve_all_embeddings(conn)
         
         # Calcular similitudes coseno entre la consulta y los embeddings almacenados
         similarities = cosine_similarity(query_embedding.reshape(1, -1), stored_embeddings).flatten()
@@ -79,17 +80,26 @@ class EmbeddingManager:
         
         return most_relevant_indices, contexts
 
-
-
+# Ejemplo de uso
+if __name__ == "__main__":
+    manager = EmbeddingManager()  # Crear una instancia de EmbeddingManager
+    query = "¿Cuál es la capital de Francia?"
+    
+    # Usar el método relevante_context en la instancia
+    indices, contexts = manager.relevant_context(query)
+    
+    print("Índices relevantes:", indices)
+    print("Contextos relevantes:", contexts)
 
 
 class ContextManager:
-    def __init__(self):
-        pass
+    def __init__(self, manager):
+        self.manager = manager
+       
     
     def _get_context(self, query):
         # Obtener índices relevantes y sus contextos usando EmbeddingManager
-        relevant_indices, contexts = EmbeddingManager.relevant_context(query)
+        relevant_indices, contexts = self.manager.relevant_context(query)
         
         # Concatenar los contextos relevantes en un solo string
         relevant_contexts = [contexts[i] for i in relevant_indices]
@@ -101,18 +111,22 @@ class ContextManager:
     
     def _save_context(self, answer):
         # Generar el embedding para el contexto que se va a guardar
-        embedding = EmbeddingManager.generate_embedding(answer)
+        embedding = self.manager.generate_embedding(answer)
 
         # Configurar la base de datos para insertar el nuevo contexto con su embedding
-        conn = EmbeddingManager.setup_database()
+        conn = self.manager.setup_database()
         
         # Insertar el contexto en la base de datos junto con su embedding correspondiente
-        EmbeddingManager.insert_embedding(conn, embedding, answer)
+        self.manager.insert_embedding(conn, embedding, answer)
         
 # Ejemplo de uso de las clases
 if __name__ == "__main__":
     # Configurar la base de datos y agregar algunos embeddings (esto se haría solo una vez)
-    conn = EmbeddingManager.setup_database()
+    # Crear una instancia de EmbeddingManager
+    manager = EmbeddingManager()
+
+    # Llamar al método setup_database en la instancia
+    conn = manager.setup_database()
 
     questions_to_insert = [
         "¿Cuál es la capital de Francia?",
@@ -122,14 +136,14 @@ if __name__ == "__main__":
     ]
 
     for question in questions_to_insert:
-        embedding = EmbeddingManager.generate_embedding(question)
-        EmbeddingManager.insert_embedding(conn, embedding, question)  # Guardar también el contexto
+        embedding = manager.generate_embedding(question)
+        manager.insert_embedding(conn, embedding, question)  # Guardar también el contexto
 
     # Cerrar conexión después de insertar los embeddings iniciales
     conn.close()
 
     # Crear instancia de ContextManager y obtener contexto para una consulta
-    context_manager_instance = ContextManager()
+    context_manager_instance = ContextManager(manager)
     
     query = "¿Cuál es la capital de Francia?"
     
