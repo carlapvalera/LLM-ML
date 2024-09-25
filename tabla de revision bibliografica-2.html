@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: solid 2px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        table table{
+            margin: 0px;
+        }
+        th{
+            border: solid 2px;
+            background-color: rgb(177, 214, 253);
+            padding: 10px;
+        }
+        td{
+            border: solid 2px;
+            padding: 10px;
+        }
+        li{
+            list-style: none;
+            text-align: left;
+        }
+        .name{
+            background-color: rgb(255, 186, 186);
+            text-align: center;
+        }
+        .yes{
+            background-color: rgb(134, 255, 123);
+        }
+    </style>
+    
+</head>
+<body>
+<center>
+    <h1>General Info</h1>
+    <table>
+        <thead>
+            <th>Model</th>
+            <th>Paper</th>
+            <th>Date</th>
+            <th>ID</th>
+            <th>Authors</th>
+        </thead>
+        <tr>
+            <td class="name">MPC</td>
+            <td>Prompted LLMs as Chatbot Modules for Long Open-domain Conversation</td>
+            <td>8 May 2023</td>
+            <td>arXiv:2305.04533v1 [cs.CL] 8 May 2023</td>
+            <td>
+                <li>Gibbeum Lee</li>
+                <li>Volker Hartmann</li>
+                <li>Jongho Park</li>
+                <li>Dimitris Papailiopoulos</li>
+                <li>Kangwook Lee</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">MemoryBank</td>
+            <td>MemoryBank: Enhancing Large Language Models with Long-Term Memory</td>
+            <td>21 May 2023</td>
+            <td>arXiv:2305.10250v3 [cs.CL] 21 May 2023</td>
+            <td>
+                <li>Wanjun Zhong</li>
+                <li>Lianghong Guo</li>
+                <li>Qiqi Gao</li>
+                <li>He Ye</li>
+                <li>Yanlin Wang</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">RET-LLM</td>
+            <td>RET-LLM: Towards a General Read-Write Memory for Large Language Models</td>
+            <td>23 May 2023</td>
+            <td>arXiv:2305.14322v1 [cs.CL] 23 May 2023</td>
+            <td>
+                <li>Ali Modarressi</li>
+                <li>Ayyoob Imani</li>
+                <li>Mohsen Fayyaz</li>
+                <li>Hinrich Schütze</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">CHATDB</td>
+            <td>CHATDB: AUGMENTING LLMS WITH DATABASES AS THEIR SYMBOLIC MEMORY</td>
+            <td>7 Jun 2023</td>
+            <td>arXiv:2306.03901v2 [cs.AI] 7 Jun 2023</td>
+            <td>
+                <li>Chenxu Hu</li>
+                <li>Jie Fu</li>
+                <li>MChenzhuang Du</li>
+                <li>Simian Luo</li>
+                <li>Junbo Zhao</li>
+                <li>Hang Zhao</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">MemoChat</td>
+            <td>MemoChat: Tuning LLMs to Use Memos for Consistent Long-Range Open-Domain Conversation</td>
+            <td>23 Aug 2023</td>
+            <td>arXiv:2308.08239v2 [cs.CL] 23 Aug 2023</td>
+            <td>
+                <li>Junru Lu</li>
+                <li>Siyu An</li>
+                <li>Mingbao Lin</li>
+                <li>Gabriele Pergola</li>
+                <li>Yulan He</li>
+                <li>Di Yin</li>
+                <li>Xing Sun</li>
+                <li>Yunsheng Wu</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">AutoGen</td>
+            <td>AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation</td>
+            <td>3 Oct 2023</td>
+            <td>arXiv:2308.08155v2 [cs.AI] 3 Oct 2023</td>
+            <td>
+                <li>Qingyun Wu</li>
+                <li>Gagan Bansal</li>
+                <li>Jieyu Zhang</li>
+                <li>Yiran Wu</li>
+                <li>Beibin Li</li>
+                <li>Erkang Zhu</li>
+                <li>Li Jiang</li>
+                <li>Xiaoyun Zhang</li>
+                <li>Shaokun Zhang</li>
+                <li>Jiale Liu</li>
+                <li>Ahmed Awadallah</li>
+                <li>Ryen W. White</li>
+                <li>Doug Burger</li>
+                <li>Chi Wang</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">TiM</td>
+            <td>Think-in-Memory: Recalling and Post-thinking Enable LLMs with Long-Term Memory</td>
+            <td>15 Nov 2023</td>
+            <td>arXiv:2311.08719v1 [cs.CL] 15 Nov 2023</td>
+            <td>
+                <li>Lei Liu</li>
+                <li>Xiaoyan Yang</li>
+                <li>Yue Shen</li>
+                <li>Binbin Hu, Zhiqiang Zhang</li>
+                <li>Jinjie Gu</li>
+                <li>Guannan Zhang</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">MemGPT</td>
+            <td>MemGPT: Towards LLMs as Operating Systems</td>
+            <td>12 Feb 2024</td>
+            <td>arXiv:2310.08560v2 [cs.AI] 12 Feb 2024</td>
+            <td>
+                <li>Charles Packer</li>
+                <li>Sarah Wooders</li>
+                <li>Kevin Lin</li>
+                <li>Vivian Fang</li>
+                <li>Shishir G. Patil</li>
+                <li>Ion Stoica</li>
+                <li>Joseph E. Gonzalez</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">SCM</td>
+            <td>Enhancing Large Language Model with Self-Controlled Memory Framework</td>
+            <td>15 Feb 2024</td>
+            <td>arXiv:2304.13343v2 [cs.CL] 15 Feb 2024</td>
+            <td>
+                <li>Bing Wang</li>
+                <li>Xinnian Liang</li>
+                <li>Jian Yang</li>
+                <li>Hui Huang</li>
+                <li>Shuangzhi Wu</li>
+                <li>Peihao Wu</li>
+                <li>Lu Lu</li>
+                <li>Zejun Ma</li>
+                <li>Zhoujun Li</li>
+            </td>
+        </tr>
+        <tr>
+
+        </tr>
+            <td class="name">RecallM</td>
+            <td>RecallM: An Adaptable Memory Mechanism with Temporal Understanding for Large Language Models</td>
+            <td>3 Oct 2023</td>
+            <td>arXiv:2307.02738v3 [cs.AI] 3 Oct 2023</td>
+            <td>
+                <li>Brandon Kynoch</li>
+                <li>Hugo Latapie</li>
+                <li>Dwane van der Sluis</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">GMeLLo</td>
+            <td>Graph Memory-based Editing for Large Language Models</td>
+            <td>16 feb 2024</td>
+            <td> - </td>
+            <td>
+                <li>Anonymous ACL submission</li>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">AriGraph</td>
+            <td>AriGraph: Learning Knowledge Graph World Models with Episodic Memory for LLM Agents</td>
+            <td>9 Sep 2024</td>
+            <td>arXiv:2407.04363v2 [cs.AI] 9 Sep 2024</td>
+            <td>
+                <li>Petr Anokhin</li>
+                <li>Nikita Semenov</li>
+                <li>Artyom Sorokin</li>
+                <li>Dmitry Evseev</li>
+                <li>Mikhail Burtsev</li>
+                <li>Evgen Burnaev</li>
+            </td>
+        </tr>
+    </table>
+
+    <h1>Model Description</h1>
+    <table>
+        <tr>
+            <th rowspan="3">Model</th>
+            <th colspan="3" rowspan="2">Memory Source</th>
+            <th colspan="6">Memory Forms</th>
+            <th colspan="5">Memory Operations</th>
+        </tr>
+        <tr>
+            <th colspan="4">Textual Form</th>
+            <th colspan="2">Parametric Form</th>
+            <th rowspan="2">Writing</th>
+            <th colspan="3">Management</th>
+            <th rowspan="2">Reading</th>
+        </tr>
+        <tr>
+            <th>Inside-trial Information</th>
+            <th>Cross-trial Information</th>
+            <th>External Knowledge</th>
+            <th>Complete</th>
+            <th>Recent</th>
+            <th>Retrieved</th>
+            <th>External</th>
+            <th>Fine-tuning</th>
+            <th>Editing</th>
+            <th>Merging</th>
+            <th>Reflection</th>
+            <th>Forgetting</th>
+        </tr>
+        <tr>
+            <td class="name">MPC</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">MemoryBank</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">RET-LLM</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">CHATDB</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">MemoChat</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">TiM</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">MemGPT</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+        </tr>
+        <tr>
+            <td class="name">SCM</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+            <td class="yes">✔️</td>
+            <td>✖️</td>
+            <td>✖️</td>
+            <td class="yes">✔️</td>
+        </tr>
+    </table>
+
+    <h1>Summaries</h1>
+    <table>
+        <thead>
+            <th>Model</th>
+            <th>Objective</th>
+            <th>Methodology</th>
+            <th>Key Results</th>
+            <th>Limitations</th>
+            <th>Conclusions</th>
+        </thead>
+        <tbody style="text-align: left;">
+            
+            <tr>
+                <td class="name">MPC</td>
+                <td>The objective of the paper is to propose a new approach for creating high-quality conversational agents, termed Modular Prompted Chatbot (MPC), which utilizes pre-trained large language models (LLMs) as individual modules to achieve long-term consistency and flexibility in open-domain conversations without the need for fine-tuning.</td>
+                <td>The methodology involves the use of pre-trained LLMs combined with techniques such as few-shot prompting, chain-of-thought (CoT), and external memory. The MPC system is designed to maintain persona and engagement throughout conversations by modularizing the chatbot's components, including a clarifier, memory processor, and utterance generator. Human evaluations were conducted to assess the performance of MPC against fine-tuned models, focusing on metrics such as sensibleness, consistency, and engagingness.</td>
+                <td>The results indicate that MPC performs comparably to or better than fine-tuned chatbot models like BB3 in open-domain conversations. Specifically, MPC showed a 9% improvement in the combined score (SCE-p) over BB3-30B, excelling in sensibleness and preference metrics while maintaining similar levels of consistency and interestingness. The modular approach also demonstrated superior performance in maintaining long-term dialogue consistency compared to non-modular methods.</td>
+                <td>One limitation noted in the study is that while MPC performs well, it exhibited lower consistency when the full persona was not included in the prompt. Additionally, the evaluation results highlighted issues with consecutive utterance repetition in the fine-tuned models, which could affect the overall conversational quality.</td>
+                <td>The paper concludes that the MPC framework effectively leverages pre-trained LLMs to create flexible and consistent conversational agents without the computational burden of fine-tuning. The findings suggest that modularized prompting can enhance long-term conversational capabilities, making MPC a promising approach for developing engaging open-domain chatbots.</td>
+            </tr>
+        <tr>
+            <td class="name">MemoryBank</td>
+            <td>The objective of the paper "MemoryBank: Enhancing Large Language Models with Long-Term Memory" is to introduce a novel memory mechanism called MemoryBank that allows large language models (LLMs) to effectively manage long-term memory. This mechanism aims to enhance the models' ability to recall relevant information, adapt to user personalities, and provide more human-like interactions in sustained engagements, such as personal companions or psychological counseling.</td>
+            <td>MemoryBank incorporates several key features:
+                <li>
+                    Memory Updating Mechanism: Inspired by the Ebbinghaus Forgetting Curve, this mechanism allows the model to forget less relevant memories over time while reinforcing important ones, mimicking human memory processes.
+                </li>
+                <li>
+                    Continuous Memory Evolution: The framework enables LLMs to update their memory continuously based on interactions, thus adapting to the user's personality and preferences.
+                </li>
+                <li>
+                    Application Development: The authors demonstrate MemoryBank's capabilities through an LLM-based chatbot named SiliconFriend, which is designed for long-term companionship and tuned with psychological dialogues to enhance empathetic responses.
+                </li>
+            
+            The evaluation involved both qualitative analysis of real-world user dialogues and quantitative analysis using simulated dialogues, where ChatGPT acted as users with diverse characteristics.</td>
+            <td>The results indicate that SiliconFriend, equipped with MemoryBank, significantly improves long-term companionship capabilities. Key findings include:
+
+                Enhanced empathetic responses and relevant memory recall during interactions,
+                strong performance in understanding user personalities and adapting responses accordingly, and
+                positive outcomes from both qualitative assessments and quantitative analyses, demonstrating the effectiveness of MemoryBank in providing coherent and contextually appropriate interactions over extended dialogues.</td>
+            <td>While the paper does not explicitly outline limitations, potential challenges may include:
+
+                The complexity of accurately modeling human-like memory behaviors in AI systems.
+                The need for careful management of memory to avoid confusion or irrelevant recall in long-term interactions.
+                The reliance on the underlying LLM's capabilities, which may vary across different models.</td>
+            <td>MemoryBank represents a significant advancement in enhancing LLMs with long-term memory capabilities. By mimicking human memory processes and allowing for continuous memory updates, MemoryBank enables LLMs to provide more personalized and contextually aware interactions. This framework has broad implications for applications requiring sustained engagement, such as virtual companions and therapeutic AI, showcasing the potential for LLMs to evolve into more effective and empathetic conversational agents.</td>
+        </tr>
+        <tr>
+            <td class="name">RET-LLM</td>
+            <td>The objective of the paper is to propose a novel framework called RET-LLM that equips large language models (LLMs) with a general write-read memory unit. This allows LLMs to explicitly extract, store, and recall knowledge from text as needed for task performance</td>
+            <td>RET-LLM consists of three main components: a fine-tuned LLM, a controller, and a memory module. The memory stores knowledge in the form of triplets (concept1, relationship, concept2) inspired by Davidsonian semantics. The fine-tuned LLM is designed to perform information extraction, lookup, and fact-based answer generation using the memory. The controller acts as an interface between the user, LLM, and memory module</td>
+            <td>Through qualitative evaluations, the authors demonstrate the superiority of RET-LLM over baseline approaches in question answering tasks. RET-LLM also exhibits robust performance in handling temporal-based question answering, showcasing its ability to effectively manage time-dependent information</td>
+            <td>The paper does not provide quantitative results or comparisons to state-of-the-art models on standard benchmarks. The qualitative examples are limited in scope and may not generalize to a wide range of tasks and datasets.</td>
+            <td>The paper concludes that RET-LLM offers several advantages over previous methods, such as enabling LLMs to explicitly store and retrieve knowledge, ensuring scalability with an external memory unit, and facilitating the incorporation of information from diverse sources. The proposed approach aims to provide a general framework for enhancing the knowledge capabilities of large language models.</td>
+        </tr>
+        <tr>
+            <td class="name">CHATDB</td>
+            <td>The main objective of ChatDB is to augment large language models (LLMs) with databases as their symbolic memory for complex multi-hop reasoning. The proposed framework aims to address the limitations of mainstream LLMs in taking full advantage of memory and their proneness to accumulating errors when performing complex reasoning tasks</td>
+            <td>ChatDB consists of two main components: an LLM controller and a symbolic memory in the form of SQL databases. The LLM controller generates SQL instructions to manipulate the databases, allowing for structured storage and symbolic manipulation of historical information. The chain-of-memory (CoM) approach is introduced to transform user input into a series of intermediate memory operation steps, decomposing complex problems into multiple steps of memory operations to enhance reasoning capabilities</td>
+            <td>The experiments demonstrate that augmenting LLMs with symbolic memory improves multi-hop reasoning capabilities and prevents error accumulation, enabling ChatDB to significantly outperform ChatGPT on a synthetic dataset requiring complex reasoning. The chain-of-memory approach enables effective memory manipulation by converting user input into multi-step intermediate memory operations, enhancing the performance of ChatDB in handling complex, multi-table database interactions with improved accuracy and stability</td>
+            <td>The paper does not provide details on the specific synthetic dataset used for evaluation or the metrics used to compare ChatDB's performance with ChatGPT. The generalization of ChatDB's effectiveness to real-world scenarios and datasets is not discussed.</td>
+            <td>ChatDB proposes a novel approach to augment LLMs with databases as their symbolic memory, enabling structured storage and symbolic manipulation of historical information using SQL statements generated by the LLM controller. The chain-of-memory approach further enhances the reasoning capabilities of ChatDB by decomposing complex problems into multiple steps of memory operations. The results demonstrate the potential of this approach in improving multi-hop reasoning and preventing error accumulation compared to mainstream LLMs</td>
+        </tr>
+        <tr>
+            <td class="name">MemoChat</td>
+            <td>The objective of MemoChat is to enable large language models (LLMs) to engage in consistent long-range open-domain conversations by using self-composed memos. The authors aim to enhance the long-term memory ability of LLMs through iterative "memorization-retrieval-response" cycles</td>
+            <td>The authors propose a pipeline for refining instructions that allows LLMs to effectively employ self-composed memos. They demonstrate a long-range open-domain conversation by carefully designing tailored memos and using an iterative process of memorization, retrieval, and response generation</td>
+            <td>The authors provide fine-tuned models based on Fastchat and Vicuna models, which can be accessed through Hugging Face. These models are built upon the authors' work and are licensed under cc-by-nc-sa-4.0</td>
+            <td>The search results do not explicitly mention any limitations of the MemoChat approach. However, the authors note that carefully designing the memos and the iterative process is required to enable consistent long-range open-domain conversations</td>
+            <td>MemoChat is a promising approach for enhancing the long-term memory and consistency of LLMs in open-domain conversations. By using self-composed memos and an iterative process, the authors demonstrate the potential for LLMs to engage in more coherent and contextually relevant dialogues over an extended period</td>
+        </tr>
+        <tr>
+            <td class="name">AutoGen</td>
+            <td>The objective of AutoGen is to provide an open-source framework that enables developers to create applications utilizing large language models (LLMs) through multi-agent conversations. This framework facilitates the development of customizable agents that can collaborate to accomplish various tasks.</td>
+            <td>AutoGen employs a modular approach where developers define a set of agents with specialized capabilities and roles. The framework allows for flexible programming of agent interactions using both natural language and computer code. This enables the agents to converse with each other and utilize human inputs and tools as needed. The framework supports various operational modes, enhancing the adaptability of the agents in different applications.</td>
+            <td>AutoGen demonstrates effective multi-agent collaboration, outperforming traditional single-agent solutions in complex tasks, as evidenced by empirical studies and benchmarks like GAIA.
+                The framework supports a wide range of applications across various domains, including mathematics, coding, question answering, operations research, online decision-making, and entertainment.
+                AutoGen allows for easy integration of human feedback through a specialized Human Proxy Agent, which enhances the interaction between agents and users.</td>
+            <td>The search results do not explicitly detail limitations of the AutoGen framework. However, challenges may arise in ensuring effective communication and collaboration among agents, as well as managing the complexity of programming diverse interaction behaviors.</td>
+            <td>AutoGen represents a significant advancement in the development of LLM applications by leveraging multi-agent conversations. The framework's flexibility and customization options enable developers to create innovative applications that can handle complex tasks collaboratively. The promising results from empirical studies highlight the potential of AutoGen to enhance the capabilities of LLMs in various fields.</td>
+        </tr>
+        <tr>
+            <td class="name">TiM</td>
+            <td>The objective of the "Think-in-Memory: Recalling and Post-thinking Enable LLMs with Long-Term Memory" paper is to enhance the long-term memory capabilities of large language models (LLMs) by introducing a novel memory mechanism called Think-in-Memory (TiM). This mechanism aims to allow LLMs to store and recall historical thoughts more effectively, improving their performance in long-term human-machine interactions.</td>
+            <td>The TiM framework consists of two main stages:
+                <li>
+                    Recalling Relevant Thoughts: Before generating a response, the LLM recalls relevant thoughts from its memory.
+                </li>
+                <li>
+                    Post-thinking: After generating a response, the LLM incorporates both historical and new thoughts to update its memory.
+                </li>
+            The authors also establish basic principles for organizing thoughts in memory using operations such as insert, forget, and merge, which facilitate dynamic updates. Additionally, they implement Locality-Sensitive Hashing to enhance the efficiency of memory retrieval during long-term conversations.</td>
+            <td>The study demonstrates that equipping existing LLMs with the TiM mechanism significantly improves their ability to generate coherent and contextually relevant responses during long-term interactions. The qualitative and quantitative experiments conducted on real-world and simulated dialogues indicate that TiM effectively mitigates issues of biased reasoning and enhances the overall conversational quality.</td>
+            <td>While the paper does not explicitly outline limitations, potential challenges may include the complexity of maintaining an evolved memory system and ensuring efficient retrieval of thoughts, especially in highly dynamic conversational contexts. There may also be limitations related to the scalability of the TiM mechanism in handling very large datasets or extensive conversation histories.</td>
+            <td>The TiM framework presents a promising approach to enhancing the long-term memory capabilities of LLMs, enabling them to engage in more meaningful and consistent interactions over extended periods. By mimicking human-like memory processes, TiM allows LLMs to store and recall thoughts effectively, thereby improving their performance in generating high-quality responses in long-term human-machine conversations.</td>
+        </tr>
+        <tr>
+            <td class="name">MemGPT</td>
+            <td>The objective of the "MemGPT: Towards LLMs as Operating Systems" paper is to address the limitations of large language models (LLMs) caused by their fixed context windows. The authors propose a system called MemGPT, which utilizes virtual context management inspired by operating systems to enable LLMs to handle extended contexts for tasks such as document analysis and multi-session conversations.</td>
+            <td>MemGPT employs a hierarchical memory architecture that mimics traditional operating systems. It consists of:
+                <li>
+                    Main Context: Similar to RAM, this is the standard fixed-length context window for LLMs during inference.
+                </li>
+                <li>
+                    External Context: Analogous to secondary storage, this holds out-of-context information that can be selectively retrieved into the main context.
+                </li>
+                
+            The system manages memory through functions that allow the LLM to page information in and out of its context. MemGPT also implements an event-driven control flow that handles user interactions and manages memory dynamically, enabling the LLM to respond to events while maintaining context.</td>
+            <td>
+                MemGPT was evaluated in two primary domains:
+                <li>
+                    Document Analysis: MemGPT successfully analyzed large documents that exceeded the context limits of existing LLMs by effectively managing relevant context.
+                </li>
+                <li>
+                    Multi-Session Chat: The system enabled conversational agents to maintain long-term memory, consistency, and adaptability over extended dialogues, significantly outperforming fixed-context baselines.
+                </li>
+                Overall, MemGPT demonstrated enhanced performance in both domains, showcasing its ability to manage context more effectively than traditional LLMs.
+            </td>
+            <td>The paper notes some limitations, including:
+
+                The reference implementation relies on OpenAI's GPT-4 models, which are proprietary, limiting transparency and reproducibility.
+                The effectiveness of MemGPT may vary based on the specific tasks and the nature of the interactions, as the system's performance is contingent on the quality of context management.</td>
+            <td>MemGPT represents a significant advancement in the capabilities of LLMs by integrating operating system principles into their design. By providing the illusion of extended memory through hierarchical management and dynamic context retrieval, MemGPT enables LLMs to tackle complex tasks that require long-term reasoning and memory. This work opens new avenues for research and application in AI, particularly in areas where traditional context limitations hinder performance.</td>
+        </tr>
+        <tr>
+            <td class="name">SCM</td>
+            <td>The objective of the paper "Enhancing Large Language Model with Self-Controlled Memory Framework" is to improve the long-term memory capabilities of large language models (LLMs) through the Self-Controlled Memory (SCM) framework. This framework aims to enable LLMs to manage lengthy inputs effectively and recall relevant information without losing critical historical context.</td>
+            <td>The SCM framework consists of three key components:
+                <li>
+                    LLM-Based Agent: Serves as the backbone of the framework, facilitating the interaction with the memory system.
+                </li>
+                <li>
+                    Memory Stream: A storage system that retains the agent's memories, allowing for the management of historical information.
+                </li>
+                <li>
+                    Memory Controller: Responsible for updating memories and determining when and how to utilize information from the memory stream.
+                </li>
+            
+            The SCM framework is designed to process ultra-long texts without requiring modifications or fine-tuning, allowing for easy integration with any instruction-following LLMs.</td>
+            <td>The experimental results demonstrate that the SCM framework significantly enhances the retrieval recall and informativeness of responses in long-term dialogues. The evaluation was conducted using an annotated dataset covering three tasks: long-term dialogues, book summarization, and meeting summarization. The SCM framework outperformed competitive baselines, including ChatGPT, particularly in handling ultra-long inputs and generating coherent summaries.</td>
+            <td>The paper does not explicitly detail limitations, but potential challenges may include the complexity of managing extensive memory streams and ensuring the efficiency of memory retrieval. Additionally, the SCM framework's reliance on the underlying LLM's capabilities may affect its overall performance.</td>
+            <td>The Self-Controlled Memory framework presents a robust solution for enhancing LLMs' ability to maintain long-term memory and manage lengthy inputs. By integrating this framework, LLMs can achieve better performance in tasks requiring extensive context retention, such as dialogues and summarization, thus expanding their applicability in real-world scenarios.</td>
+        </tr>
+        <tr>
+            <td class="name">RecallM</td>
+            <td>To equip Large Language Models (LLMs) with an adaptable and updatable long-term memory mechanism that is effective at belief updating and maintaining a temporal understanding of the knowledge provided to it.</td>
+            <td>RecallM Architecture: A novel architecture that combines a key-value store and a neural network to represent and retrieve information.
+                Temporal Understanding: Incorporates a time-based indexing mechanism to ensure that the most recent information is prioritized.
+                Belief Updating: Uses a mechanism to update stored knowledge based on new information, allowing for continuous learning and adaptation.</td>
+            <td>Improved Temporal Understanding: RecallM significantly outperforms existing methods in understanding the temporal relationships between events and information.
+                Effective Belief Updating: Demonstrates superior ability to update stored knowledge based on new evidence.
+                Competitive Performance: Shows competitive results on general question-answering and in-context learning tasks.</td>
+            <td>Computational Overhead: The additional memory and processing required for RecallM may increase computational costs.
+                Data Dependence: The effectiveness of RecallM may depend on the quality and quantity of the data used to train and update the model.</td>
+            <td>RecallM is a promising approach for enhancing the capabilities of LLMs by providing them with a robust and adaptable memory mechanism.
+                Its ability to maintain temporal understanding and update beliefs makes it well-suited for tasks that require long-term memory and continuous learning.
+                Future research could explore ways to further optimize RecallM's efficiency and address potential limitations.</td>
+        </tr>
+    <tr>
+        <td class="name">GMeLLo</td>
+        <td>The primary objective of this research is to enhance the capabilities of large language models by incorporating a graph memory structure. This graph memory would allow the model to:
+
+            Store and retrieve information in a more structured and efficient manner than traditional sequential memory.
+            Establish relationships and connections between different pieces of information, improving comprehension and reasoning.
+            Handle complex tasks that require understanding and manipulating interconnected concepts.</td>
+        <td>A typical methodology for this research might involve the following steps:
+
+            Graph Memory Design:
+                Structure: Determine the most suitable graph structure (e.g., directed, undirected, weighted) for representing the relationships between information units.
+                Storage: Decide how information will be stored within the graph nodes (e.g., embeddings, tokens).
+                Update: Define rules for updating the graph based on new information or changes in relationships.
+        
+            Integration with LLM:
+                Interface: Develop a mechanism for the LLM to interact with the graph memory (e.g., querying, updating).
+                Attention Mechanism: Incorporate graph attention mechanisms to focus on relevant nodes during processing.
+        
+            Training and Evaluation:
+                Dataset: Select or create a suitable dataset for training and evaluation.
+                Tasks: Define tasks to assess the model's performance (e.g., question answering, summarization, reasoning).
+                Metrics: Choose appropriate metrics to measure the model's effectiveness (e.g., accuracy, F1-score, BLEU score).</td>
+        <td>Potential key results might include:
+
+            Improved performance on tasks requiring complex reasoning or long-term memory.
+            Enhanced ability to handle factual inconsistencies or contradictions.
+            Increased efficiency in processing and retrieving information.
+            Qualitative improvements in the model's generated text (e.g., coherence, relevance).</td>
+        <td>Possible limitations could be:
+
+            Computational overhead: Graph memory can increase the model's computational requirements.
+            Scalability: Managing large and complex graphs can be challenging.
+            Overfitting: The model might become overly reliant on the graph memory, limiting its ability to generalize.
+            Knowledge acquisition: Acquiring and maintaining accurate and up-to-date knowledge for the graph can be difficult.</td>
+        <td>Based on the results, the research could conclude that:
+
+            Graph memory-based editing is a promising approach for enhancing the capabilities of large language models.
+            The proposed method outperforms baseline models on specific tasks.
+            Future research should focus on addressing the identified limitations and exploring new applications.</td>
+    </tr>
+    <tr>
+        <td class="name">AriGraph</td>
+        <td>The research presented in the paper aims to develop a method called AriGraph to enhance the capabilities of Large Language Models (LLMs) by incorporating:
+
+            Knowledge Graph World Models: This allows the model to represent the world as a structured graph, where entities and their relationships are explicitly defined.
+            Episodic Memory: The model can store past interactions and experiences within the graph, enabling it to learn and adapt over time.
+        
+        The overall objective is to create LLMs that can:
+        
+            Reason and solve tasks in new environments by leveraging their knowledge graph and episodic memory.
+            Learn and adapt based on past experiences.</td>
+        <td>The proposed approach involves the following steps:
+
+            Knowledge Graph Construction:
+                The paper likely details a method for automatically building a knowledge graph from text data or existing knowledge bases.
+                This graph would capture entities, their attributes, and the relationships between them.
+        
+            Episodic Memory Integration:
+                The model interacts with the environment and stores information about its experiences as nodes and edges within the knowledge graph.
+                This episodic memory allows the model to learn from past interactions and adapt its behavior.
+        
+            LLM Agent Training:
+                The LLM agent is trained on a combination of text data and the constructed knowledge graph.
+                Training likely involves techniques like reinforcement learning or supervised learning, where the agent receives rewards for successfully completing tasks within the simulated environment represented by the knowledge graph.</td>
+        <td>Since the paper is under review (version 2), specific results might not be publicly available yet. However, the expected key findings could include:
+
+            Improved performance on tasks requiring reasoning and understanding of complex relationships (e.g., question answering, summarization).
+            Enhanced ability to navigate and solve problems within simulated environments represented by the knowledge graph.
+            Demonstration of learning and adaptation based on the episodic memory stored within the graph.</td>
+        <td>The limitations might include:
+
+            Scalability: Constructing and maintaining large and complex knowledge graphs can be computationally expensive.
+            Knowledge Acquisition: Ensuring the accuracy and completeness of the knowledge graph is crucial for effective performance.
+            Generalizability: The model's performance might depend heavily on the specific knowledge graph used for training.</td>
+        <td>The expected conclusions could be:
+
+            AriGraph is a promising approach for developing LLMs with improved reasoning and adaptation capabilities.
+            The research demonstrates the potential of combining knowledge graphs and episodic memory for LLM agents.
+            Future work should focus on addressing limitations, exploring real-world applications, and investigating different knowledge graph construction methods.</td>
+    </tr>
+    </tbody>
+    </table>
+</center>
+</body>
+</html>
