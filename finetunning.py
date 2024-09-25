@@ -8,7 +8,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 # Cargar un conjunto de datos (puedes reemplazar esto con tu propio conjunto de datos)
-dataset = load_dataset("squad")  # Ejemplo con SQuAD
+dataset = load_dataset("covid-19")  # Ejemplo con SQuAD
 
 # Preprocesar los datos
 def preprocess_function(examples):
