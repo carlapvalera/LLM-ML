@@ -1,8 +1,6 @@
 from fireworks.client import Fireworks
-import os
 #from dotenv import load_dotenv
 import re
-import sys
 
 
 from ContextManager import ContextManager  # Importar ContextManager
