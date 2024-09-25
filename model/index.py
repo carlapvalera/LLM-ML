@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_chat import message
 from streamlit.components.v1 import html
 from streamlit_chat import message
-from start import LLM
+from model.start import LLM
 #from dotenv import load_dotenv
 import re
 import os

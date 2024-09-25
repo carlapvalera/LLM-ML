@@ -5,7 +5,8 @@ import re
 import sys
 
 
-from model.ContextManager import ContextManager  # Importar ContextManager
+from ContextManager import ContextManager  # Importar ContextManager
+from ContextManager import EmbeddingManager
 
 
 API_KEY = "fw_3ZXb6WWaLuUNnJZnvXWTwEY2"
@@ -23,6 +24,8 @@ api_key = API_KEY
 
 class LLM():
     def __init__(self, api_key: str = api_key, model: str = "accounts/fireworks/models/llama-v3p1-8b-instruct") -> None:
+        self.EmbeddingManager = EmbeddingManager()
+        self.ContextManager = ContextManager(self.EmbeddingManager)
         self.__SEND_GLOBAL_STATEMENT = True
         self.__api_key = api_key
         self.__model = model
@@ -32,10 +35,11 @@ class LLM():
 
     # TODO: Fill get_context and save_context with the back-end like part with the RAG and BERT components
     def _get_context(self,query):
-        return ContextManager._get_context(query= query)
+        return self.ContextManager._get_context(query)
+    
     def _save_context(self,answer):
-        ContextManager._save_context(answer=answer)
-        pass
+        self.ContextManager._save_context(answer)
+        
     
 
 
